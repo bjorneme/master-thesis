@@ -2,6 +2,9 @@
 
 This repository presents an ablation study on the ChestX-ray14 dataset using SSM based backbones, both with and without BYOL pre-training. The best individual model was MambaVision-L achieving 0.853 mAUC and the best ensemble achieved 0.861 mAUC. The results from the experiments are step-by-step presented below linking to the notebook where the experiment is conducted.
 
+**How to Run a Notebook**
+
+To run a notebook, the ZIP_PATH need to point to the location of the of the dataset, while EXTRACTED_PATH needs to point to the location where the ChestX-ray14 dataset is should be extracted. There is one TODO in each notebook. This comment needs to be uncomment in order to extract the dataset. After this the code can be run when utilizing one GPU.
 
 ## **Establish Baseline**
 
