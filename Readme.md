@@ -70,7 +70,7 @@ The best combination of augmentations used in the following experiments is rando
 | Cosine Annealing with Restarts       | 0.845 | Restarts every 50 epochs                                   |[here](https://github.com/bjorneme/master-thesis/blob/main/ChestX-ray14%20Single%20Models/MambaVision_Tiny/BYOL/Learning%20Rate%20Scheduler/MambaVision_T2_BYOL_Cosine_Annealing_with_Restarts_Every_50_epoch.ipynb)
 | Cosine Annealing with Warmup         | 0.842 | Linear Warmup for 10 epochs                                |[here](https://github.com/bjorneme/master-thesis/blob/main/ChestX-ray14%20Single%20Models/MambaVision_Tiny/BYOL/Learning%20Rate%20Scheduler/MambaVision_T2_BYOL_Cosine_Annealing_with_Warmup.ipynb)
 
-The cosine annealing was used in the following experimens with 250 epochs and min learning rate of 1e-6.
+The cosine annealing was found to be best and is used in the following experimens with 250 epochs and min learning rate of 1e-6.
 
 **Change Optimizer**
 
