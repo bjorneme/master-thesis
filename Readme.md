@@ -1,6 +1,7 @@
 # SSM-based Models and BYOL for Multi-label Classification on ChestX-ray14
 
-This repository presents an ablation study on the ChestX-ray14 dataset using SSM based backbones, both with and without BYOL pre-training. The results from the experiments are presented below.
+This repository presents an ablation study on the ChestX-ray14 dataset using SSM based backbones, both with and without BYOL pre-training. The best individual model was MambaVision-L achieving 0.853 mAUC and the best ensemble achieved 0.861 mAUC. The results from the experiments are presented below linking to the notebook where the experiment is conducted.
+
 
 ## **Establish Baseline**
 
@@ -8,16 +9,27 @@ First the baseline is established for all backbones. This is first done without 
 
 **Baseline Comparisons**
 
-| Model           | mAUC (without TTA) | mAUC (with TTA) |
-|-----------------|--------------------|-----------------|
-| DenseNet121     | 0.833              | 0.841           |
-| ConvNeXt v2     | 0.837              | 0.843           |
-| Swin v2         | 0.829              | 0.839           |
-| CoAtNet         | 0.849              | 0.850           |
-| MaxViT          | 0.843              | 0.849           |
-| VMamba          | 0.846              | 0.850           |
-| MambaVision-L   | 0.845              | 0.849           |
-| MambaVision-T2  | 0.837              | 0.845           |
+| Model           | mAUC (without TTA) | Notebook Link |
+|-----------------|--------------------|---------------|
+| DenseNet121     | 0.833              |
+| ConvNeXt v2     | 0.837              |
+| Swin v2         | 0.829              |
+| CoAtNet         | 0.849              |
+| MaxViT          | 0.843              |
+| VMamba          | 0.846              |
+| MambaVision-L   | 0.845              |
+| MambaVision-T2  | 0.837              |[here](https://github.com/bjorneme/master-thesis/blob/main/ChestX-ray14%20Single%20Models/MambaVision_Tiny/Baseline/MambaVision_T2.ipynb)
+
+| Model           | mAUC (with TTA) | Notebook Link |
+|-----------------|-----------------|---------------|
+| DenseNet121     | 0.841           |
+| ConvNeXt v2     | 0.843           |
+| Swin v2         | 0.839           |
+| CoAtNet         | 0.850           |
+| MaxViT          | 0.849           |
+| VMamba          | 0.850           |
+| MambaVision-L   | 0.849           |
+| MambaVision-T2  | 0.845           |[here](https://github.com/bjorneme/master-thesis/blob/main/ChestX-ray14%20Single%20Models/MambaVision_Tiny/Baseline/MambaVision_T2_TTA.ipynb)
 
 
 ## **BYOL Ablation Study**
@@ -38,6 +50,8 @@ After the baseline is established. MambaVision-T2 is used performing a ablation 
 | + Random erasing                    | 0.847 |
 | + Gaussian blur                     | 0.843 |
 
+The best combination of augmentations used in the following experiments is random crop, horizontal flip, rotation, brightness, contrast and erasing x3.
+
 
 **Change Learning Rate Scheduler**
 
@@ -53,6 +67,7 @@ After the baseline is established. MambaVision-T2 is used performing a ablation 
 | Cosine Annealing with Restarts       | 0.845 | Restarts every 50 epochs                                   |
 | Cosine Annealing with Warmup         | 0.842 | Linear Warmup for 10 epochs                                |
 
+The cosine annealing was used in the following experimens with 250 epochs and min learning rate of 1e-6.
 
 **Change Optimizer**
 
@@ -63,6 +78,8 @@ After the baseline is established. MambaVision-T2 is used performing a ablation 
 | AdamW                   | 0.847 |
 | Lars                    | 0.848 |
 
+The Lars optimizer was found to be best and is used in following experiments.
+
 
 **Change Batch Size**
 
@@ -72,6 +89,8 @@ After the baseline is established. MambaVision-T2 is used performing a ablation 
 | 256        | 0.848 |
 | 512        | 0.845 |
 
+A batch size of 256 was found to be best and is used in following experiments.
+
 
 **Change Projection and Prediction Head**
 
@@ -80,6 +99,7 @@ After the baseline is established. MambaVision-T2 is used performing a ablation 
 | 1024                                 | 0.848 |
 | 4096                                 | 0.848 |
 
+The hidden dim did not affect the performance. The smallest hidden dim of 1024 will be used in following experiments.
 
 **Change Backbone**
 
